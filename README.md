@@ -1,4 +1,5 @@
 # Nutri Way
+[Available on Play Store](https://play.google.com/store/apps/details?id=com.docputs.calculadora_de_imc)
 
 ## Description
 
