@@ -14,8 +14,7 @@ class IMCDisplay extends StatefulWidget {
   _IMCDisplayState createState() => _IMCDisplayState();
 }
 
-class _IMCDisplayState extends State<IMCDisplay>
-    with SingleTickerProviderStateMixin {
+class _IMCDisplayState extends State<IMCDisplay> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation;
   var _opacity = 0.0;
@@ -23,15 +22,13 @@ class _IMCDisplayState extends State<IMCDisplay>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        TickerProvider: this, duration: const Duration(seconds: 2));
-    _animation = Tween<double>(begin: 0, end: widget.imcModel.imc)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.ease))
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.completed) {
-              _opacity = 1.0;
-            }
-          });
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 2));
+    _animation = Tween<double>(begin: 0, end: widget.imcModel.imc).animate(CurvedAnimation(parent: _controller, curve: Curves.ease))
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _opacity = 1.0;
+        }
+      });
     _controller.forward();
   }
 
@@ -60,10 +57,7 @@ class _IMCDisplayState extends State<IMCDisplay>
             children: [
               Text(
                 _animation.value.toStringAsFixed(1),
-                style: Theme.of(context)
-                    .textTheme
-                    .headline2
-                    .copyWith(fontWeight: FontWeight.w900),
+                style: Theme.of(context).textTheme.headline2.copyWith(fontWeight: FontWeight.w900),
               ),
               AnimatedOpacity(
                 duration: const Duration(milliseconds: 600),
